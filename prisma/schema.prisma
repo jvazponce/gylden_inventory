@@ -1,0 +1,187 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("PRODUCTION") // ADMIN, PRODUCTION, SALES
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model RawMaterial {
+  id                 String              @id @default(uuid())
+  name               String
+  category           String              // HONEY, YEAST, NUTRIENT, FRUIT, WATER, PACKAGING, OTHER
+  unit               String              // kg, g, L, units
+  stock              Float               @default(0)
+  minStock           Float               @default(0)
+  costPerUnit        Float?              @default(0) // Precio de compra unitario
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  recipeItems        RecipeItem[]
+  movements          InventoryMovement[]
+  purchaseOrderItems PurchaseOrderItem[]
+}
+
+model PurchaseOrder {
+  id          String              @id @default(uuid())
+  orderNumber String              @unique // Ej. OC-2026-001
+  requestedBy String              @default("Producción")
+  status      String              @default("PENDING") // PENDING, APPROVED, RECEIVED, REJECTED
+  notes       String?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  receivedAt  DateTime?
+  items       PurchaseOrderItem[]
+}
+
+model PurchaseOrderItem {
+  id              String        @id @default(uuid())
+  purchaseOrderId String
+  purchaseOrder   PurchaseOrder @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
+  rawMaterialId   String
+  rawMaterial     RawMaterial   @relation(fields: [rawMaterialId], references: [id])
+  quantity        Float         // Cantidad solicitada
+  estimatedCost   Float?        @default(0)
+}
+
+model FinishedGood {
+  id             String          @id @default(uuid())
+  name           String          // Ej. Hidromiel Tradicional
+  style          String?         // Tradicional, Melomel, Metheglin, etc.
+  format         String          @default("Botella 330ml")
+  stock          Int             @default(0)
+  unitPrice      Float           @default(0)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  recipe         Recipe?         @relation(fields: [recipeId], references: [id])
+  recipeId       String?
+  batches        Batch[]
+  shipmentItems  ShipmentItem[]
+  movements      InventoryMovement[]
+}
+
+model Recipe {
+  id               String          @id @default(uuid())
+  name             String          // Ej. Hidromiel Frutos Rojos
+  description      String?
+  baseVolumeLiters Float           @default(20)
+  estimatedDays    Int             @default(19)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  items            RecipeItem[]
+  batches          Batch[]
+  finishedGoods    FinishedGood[]
+}
+
+model RecipeItem {
+  id            String       @id @default(uuid())
+  recipeId      String
+  recipe        Recipe       @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  rawMaterialId String
+  rawMaterial   RawMaterial  @relation(fields: [rawMaterialId], references: [id])
+  quantity      Float        // Cantidad para el baseVolumeLiters
+  stage         Int          @default(1) // 1: Base/Fermentación 1, 2: Frutas/Fermentación 2, etc.
+  notes         String?
+}
+
+model Batch {
+  id                    String        @id @default(uuid())
+  batchNumber           String        @unique // Ej. LOTE-2026-001
+  recipeId              String
+  recipe                Recipe        @relation(fields: [recipeId], references: [id])
+  finishedGoodId        String?
+  finishedGood          FinishedGood? @relation(fields: [finishedGoodId], references: [id])
+  volumeLiters          Float         @default(20)
+  currentStage          Int           @default(1) // 1 a 6
+  status                String        @default("IN_PROGRESS") // IN_PROGRESS, COMPLETED, CANCELLED
+  startDate             DateTime      @default(now())
+  stageTargetDate       DateTime?     // Fecha estimada para cambiar a siguiente etapa
+  estimatedEndDate      DateTime?     // Fecha estimada total
+  actualBottlesProduced Int?          @default(0)
+  notes                 String?
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+  logs                  BatchLog[]
+}
+
+model BatchLog {
+  id          String   @id @default(uuid())
+  batchId     String
+  batch       Batch    @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  stageNumber Int
+  stageName   String
+  startedAt   DateTime @default(now())
+  completedAt DateTime?
+  densityOG   Float?   // Densidad Inicial
+  densityFG   Float?   // Densidad Final
+  temperature Float?   // °C
+  notes       String?
+  createdAt   DateTime @default(now())
+}
+
+model Customer {
+  id            String     @id @default(uuid())
+  name          String     // Nombre comercial o personal
+  contactName   String?
+  phone         String?
+  email         String?
+  address       String?    // Dirección o Punto de Envío
+  notes         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  shipments     Shipment[]
+}
+
+model Shipment {
+  id             String         @id @default(uuid())
+  shipmentNumber String         @unique // Ej. ENV-001
+  customerId     String
+  customer       Customer       @relation(fields: [customerId], references: [id])
+  shipmentDate   DateTime       @default(now())
+  deliveryStatus String         @default("PENDING") // PENDING, DELIVERED, CANCELLED
+  deliveredAt    DateTime?
+  totalExpected  Float          @default(0)
+  totalPaid      Float          @default(0)
+  paymentStatus  String         @default("PENDING") // PENDING, PARTIAL, PAID
+  notes          String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  items          ShipmentItem[]
+}
+
+model ShipmentItem {
+  id             String       @id @default(uuid())
+  shipmentId     String
+  shipment       Shipment     @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+  finishedGoodId String
+  finishedGood   FinishedGood @relation(fields: [finishedGoodId], references: [id])
+  quantity       Int          @default(1) // Botellas enviadas
+  unitPrice      Float        @default(0)
+  subtotal       Float        @default(0)
+}
+
+model InventoryMovement {
+  id            String       @id @default(uuid())
+  itemType      String       // RAW_MATERIAL, FINISHED_GOOD
+  rawMaterialId String?
+  rawMaterial   RawMaterial? @relation(fields: [rawMaterialId], references: [id])
+  finishedGoodId String?
+  finishedGood  FinishedGood? @relation(fields: [finishedGoodId], references: [id])
+  movementType  String       // INITIAL, PURCHASE, PRODUCTION_USE, PRODUCTION_YIELD, PACKAGING_USE, SHIPMENT, ADJUSTMENT
+  quantity      Float        // Positivo (entrada) o negativo (salida)
+  previousStock Float
+  newStock      Float
+  referenceId   String?      // Id de batch o shipment o purchaseOrder
+  notes         String?
+  createdAt     DateTime     @default(now())
+}
