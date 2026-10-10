@@ -103,21 +103,21 @@ export default function NewBatchClient({
       <div className="flex items-center gap-2">
         <Link
           href="/batches"
-          className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-slate-800"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-400 hover:text-zinc-100"
         >
           <ArrowLeft className="w-4 h-4" />
           Volver a Batches
         </Link>
       </div>
 
-      <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div className="flex items-center gap-3 pb-5 border-b border-slate-100">
-          <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center">
+      <div className="bg-zinc-900 rounded-2xl border border-zinc-700 p-6 shadow-sm">
+        <div className="flex items-center gap-3 pb-5 border-b border-zinc-800">
+          <div className="w-10 h-10 rounded-xl bg-yellow-950 text-yellow-400 flex items-center justify-center">
             <Beer className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-slate-900">Iniciar Nuevo Lote de Producción</h1>
-            <p className="text-xs text-slate-500">
+            <h1 className="text-xl font-bold text-zinc-50">Iniciar Nuevo Lote de Producción</h1>
+            <p className="text-xs text-zinc-400">
               Al confirmar, el sistema descontará automáticamente las materias primas del inventario e iniciará la Etapa 1.
             </p>
           </div>
@@ -134,7 +134,7 @@ export default function NewBatchClient({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Receta */}
             <div className="md:col-span-2">
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Receta a Elaborar *
               </label>
               <select
@@ -142,7 +142,7 @@ export default function NewBatchClient({
                 value={recipeId}
                 onChange={(e) => setRecipeId(e.target.value)}
                 required
-                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
+                className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
               >
                 {recipes.map((r) => (
                   <option key={r.id} value={r.id}>
@@ -154,7 +154,7 @@ export default function NewBatchClient({
 
             {/* Código de lote */}
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Código de Lote *
               </label>
               <input
@@ -163,7 +163,7 @@ export default function NewBatchClient({
                 required
                 value={batchNumber}
                 onChange={(e) => setBatchNumber(e.target.value)}
-                className="w-full px-3 py-2 text-sm font-mono font-bold text-slate-900 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="w-full px-3 py-2 text-sm font-mono font-bold text-zinc-50 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
               />
             </div>
           </div>
@@ -171,7 +171,7 @@ export default function NewBatchClient({
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {/* Volumen del lote */}
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Volumen Objetivo (Litros) *
               </label>
               <div className="relative">
@@ -183,17 +183,18 @@ export default function NewBatchClient({
                   step="1"
                   value={volumeLiters}
                   onChange={(e) => setVolumeLiters(Math.max(1, parseFloat(e.target.value) || 1))}
-                  className="w-full px-3 py-2 text-sm font-bold text-slate-900 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full px-3 py-2 text-sm font-bold text-zinc-50 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100 font-mono"
                 />
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-zinc-500">
                   L
                 </span>
               </div>
+              <p className="text-[10px] text-zinc-500 mt-1">Escala proporcionalmente los ingredientes</p>
             </div>
 
             {/* Lectura inicial de densidad */}
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Densidad Inicial (OG / Gravedad)
               </label>
               <input
@@ -203,14 +204,15 @@ export default function NewBatchClient({
                 value={densityOG}
                 onChange={(e) => setDensityOG(e.target.value)}
                 placeholder="1.110"
-                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="w-full px-3 py-2 text-sm font-mono border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
               />
+              <p className="text-[10px] text-zinc-500 mt-1">Densidad mosto para ~14% ABV (ej. 1.110)</p>
             </div>
 
             {/* Temperatura */}
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
-                Temperatura de Inoculación (°C)
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                Temperatura Inoculación (°C)
               </label>
               <input
                 type="number"
@@ -219,14 +221,15 @@ export default function NewBatchClient({
                 value={temperature}
                 onChange={(e) => setTemperature(e.target.value)}
                 placeholder="18"
-                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="w-full px-3 py-2 text-sm font-mono border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
               />
+              <p className="text-[10px] text-zinc-500 mt-1">Rango óptimo de inoculación: 16°C – 20°C</p>
             </div>
           </div>
 
           {/* Notas */}
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label className="block text-xs font-semibold text-zinc-300 mb-1">
               Observaciones / Notas Iniciales
             </label>
             <input
@@ -235,21 +238,21 @@ export default function NewBatchClient({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Ej. Levadura hidratada con Go-Ferm a 35°C por 20 min..."
-              className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
             />
           </div>
 
           {/* Materias primas a descontar */}
           {selectedRecipe && (
-            <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
-              <h3 className="text-xs font-bold text-slate-800 mb-2 flex items-center justify-between">
+            <div className="p-4 bg-zinc-800 rounded-xl border border-zinc-700">
+              <h3 className="text-xs font-bold text-zinc-100 mb-2 flex items-center justify-between">
                 <span>Materias Primas que se descontarán del inventario:</span>
-                <span className="text-[11px] font-normal text-slate-500">
+                <span className="text-[11px] font-normal text-zinc-400">
                   Escalado para {volumeLiters} Litros
                 </span>
               </h3>
 
-              <div className="divide-y divide-slate-200 text-xs">
+              <div className="divide-y divide-zinc-700 text-xs">
                 {selectedRecipe.items.map((item) => {
                   const needed = item.quantity * scale;
                   const hasStock = item.rawMaterial.stock >= needed;
@@ -257,13 +260,13 @@ export default function NewBatchClient({
                   return (
                     <div key={item.id} className="py-2 flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="font-medium text-slate-800">{item.rawMaterial.name}</span>
-                        <span className="text-[10px] text-slate-400">
+                        <span className="font-medium text-zinc-100">{item.rawMaterial.name}</span>
+                        <span className="text-[10px] text-zinc-500">
                           (Etapa {item.stage})
                         </span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="font-bold text-slate-900">
+                        <span className="font-bold text-zinc-50">
                           {needed.toFixed(needed % 1 === 0 ? 0 : 2)} {item.rawMaterial.unit}
                         </span>
                         {hasStock ? (
@@ -284,12 +287,12 @@ export default function NewBatchClient({
           )}
 
           {/* Timeline preview */}
-          <div className="p-4 bg-amber-50/50 rounded-xl border border-amber-200/80">
-            <h4 className="text-xs font-bold text-amber-950 mb-2 flex items-center gap-1.5">
-              <Calendar className="w-4 h-4 text-amber-700" />
+          <div className="p-4 bg-yellow-950/40 rounded-xl border border-yellow-800/80">
+            <h4 className="text-xs font-bold text-yellow-300 mb-2 flex items-center gap-1.5">
+              <Calendar className="w-4 h-4 text-yellow-400" />
               Línea de Tiempo Estimada del Lote
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-zinc-300">
               <div>
                 <strong>Etapa 1:</strong> Base y 1ra fermentación (~7 días) &rarr; cambio estimado en <strong>7 días</strong>.
               </div>
@@ -299,17 +302,17 @@ export default function NewBatchClient({
             </div>
           </div>
 
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+          <div className="pt-4 border-t border-zinc-800 flex items-center justify-end gap-3">
             <Link
               href="/batches"
-              className="px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg"
+              className="px-4 py-2 text-xs font-medium text-zinc-400 hover:bg-zinc-800 rounded-lg"
             >
               Cancelar
             </Link>
             <button
               type="submit"
               disabled={isSubmitting || stockIssues.length > 0}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-lg shadow-sm disabled:opacity-50 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-yellow-500 hover:bg-yellow-400 text-zinc-950 font-bold text-xs rounded-lg shadow-sm disabled:opacity-50 transition-all"
             >
               <Beer className="w-4 h-4" />
               {isSubmitting ? 'Iniciando lote...' : 'Confirmar e Iniciar Lote'}

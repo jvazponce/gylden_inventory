@@ -48,20 +48,20 @@ export default function EditRawMaterialModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="bg-white rounded-xl shadow-xl max-w-lg w-full overflow-hidden border border-slate-200">
-        <div className="px-5 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+      <div className="bg-zinc-900 rounded-xl shadow-xl max-w-lg w-full overflow-hidden border border-zinc-700">
+        <div className="px-5 py-4 bg-zinc-800 border-b border-zinc-700 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-md bg-amber-100 text-amber-800 flex items-center justify-center">
+            <div className="w-7 h-7 rounded-md bg-yellow-950 text-yellow-400 flex items-center justify-center">
               <Edit3 className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-semibold text-slate-800">Editar Materia Prima</h3>
-              <p className="text-[11px] text-slate-500 font-mono">{material.name}</p>
+              <h3 className="font-semibold text-zinc-100">Editar Materia Prima</h3>
+              <p className="text-[11px] text-zinc-400 font-mono">{material.name}</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 p-1 rounded-lg"
+            className="text-zinc-500 hover:text-zinc-300 p-1 rounded-lg"
           >
             <X className="w-5 h-5" />
           </button>
@@ -76,7 +76,7 @@ export default function EditRawMaterialModal({
           )}
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label className="block text-xs font-semibold text-zinc-300 mb-1">
               Nombre de la Materia Prima *
             </label>
             <input
@@ -84,20 +84,20 @@ export default function EditRawMaterialModal({
               name="name"
               required
               defaultValue={material.name}
-              className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Categoría *
               </label>
               <select
                 name="category"
                 required
                 defaultValue={material.category}
-                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
+                className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
               >
                 <option value="HONEY">Miel</option>
                 <option value="YEAST">Levadura</option>
@@ -110,14 +110,14 @@ export default function EditRawMaterialModal({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Unidad de Medida *
               </label>
               <select
                 name="unit"
                 required
                 defaultValue={material.unit}
-                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
+                className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
               >
                 <option value="kg">Kilogramos (kg)</option>
                 <option value="g">Gramos (g)</option>
@@ -129,7 +129,7 @@ export default function EditRawMaterialModal({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Precio / Costo Unitario ($ por {material.unit}) *
               </label>
               <input
@@ -139,12 +139,12 @@ export default function EditRawMaterialModal({
                 name="costPerUnit"
                 required
                 defaultValue={material.costPerUnit || 0}
-                className="w-full px-3 py-2 text-sm font-bold text-slate-900 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="w-full px-3 py-2 text-sm font-bold text-zinc-50 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Stock Mínimo (Alerta de Seguridad) *
               </label>
               <input
@@ -154,28 +154,28 @@ export default function EditRawMaterialModal({
                 name="minStock"
                 required
                 defaultValue={material.minStock}
-                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
               />
             </div>
           </div>
 
-          <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-600 flex justify-between items-center">
+          <div className="p-3 bg-zinc-800 border border-zinc-700 rounded-lg text-xs text-zinc-400 flex justify-between items-center">
             <span>Stock actual en bodega:</span>
-            <span className="font-bold text-slate-900">{material.stock} {material.unit}</span>
+            <span className="font-bold text-zinc-50">{material.stock} {material.unit}</span>
           </div>
 
           <div className="pt-2 flex justify-end gap-2">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg"
+              className="px-4 py-2 text-xs font-medium text-zinc-400 hover:bg-zinc-800 rounded-lg"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-5 py-2 text-xs font-bold text-white bg-amber-600 hover:bg-amber-500 rounded-lg shadow-sm disabled:opacity-50"
+              className="px-5 py-2 text-xs font-bold text-white bg-yellow-500 hover:bg-yellow-400 text-zinc-950 rounded-lg shadow-sm disabled:opacity-50"
             >
               {isSubmitting ? 'Guardando cambios...' : 'Actualizar Insumo'}
             </button>

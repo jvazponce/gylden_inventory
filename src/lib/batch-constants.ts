@@ -12,7 +12,7 @@ export const PRODUCTION_STAGES: StageDefinition[] = [
     name: 'Preparación de base y 1ra fermentación',
     description: 'Disolución de miel, agua, nutrientes e inoculación de levadura.',
     durationDays: 7,
-    badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+    badgeColor: 'bg-yellow-950 text-yellow-300 border-yellow-700',
   },
   {
     number: 2,

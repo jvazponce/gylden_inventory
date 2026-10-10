@@ -49,7 +49,7 @@ export default function BottleBatchModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="bg-white rounded-xl shadow-xl max-w-lg w-full overflow-hidden border border-slate-200">
+      <div className="bg-zinc-900 rounded-xl shadow-xl max-w-lg w-full overflow-hidden border border-zinc-700">
         <div className="px-5 py-4 bg-emerald-50 border-b border-emerald-200 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center">
@@ -62,7 +62,7 @@ export default function BottleBatchModal({
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 p-1 rounded-lg"
+            className="text-zinc-500 hover:text-zinc-300 p-1 rounded-lg"
           >
             <X className="w-5 h-5" />
           </button>
@@ -76,23 +76,23 @@ export default function BottleBatchModal({
             </div>
           )}
 
-          <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-xs">
-            <div className="font-bold text-slate-800">Efectos automáticos en el Inventario:</div>
-            <ul className="space-y-1 text-slate-600">
+          <div className="p-3.5 bg-zinc-800 border border-zinc-700 rounded-xl space-y-2 text-xs">
+            <div className="font-bold text-zinc-100">Efectos automáticos en el Inventario:</div>
+            <ul className="space-y-1 text-zinc-400">
               <li className="flex items-center gap-1.5 text-emerald-800 font-medium">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 Se sumarán <strong>{actualBottles} botellas</strong> a Producto Terminado.
               </li>
-              <li className="flex items-center gap-1.5 text-slate-700">
-                <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />
+              <li className="flex items-center gap-1.5 text-zinc-300">
+                <CheckCircle2 className="w-3.5 h-3.5 text-yellow-500" />
                 Se descontarán <strong>{actualBottles} botellas vacías 330ml</strong> del stock de empaque.
               </li>
-              <li className="flex items-center gap-1.5 text-slate-700">
-                <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />
+              <li className="flex items-center gap-1.5 text-zinc-300">
+                <CheckCircle2 className="w-3.5 h-3.5 text-yellow-500" />
                 Se descontarán <strong>{actualBottles} chapas doradas</strong> del stock de empaque.
               </li>
-              <li className="flex items-center gap-1.5 text-slate-700">
-                <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />
+              <li className="flex items-center gap-1.5 text-zinc-300">
+                <CheckCircle2 className="w-3.5 h-3.5 text-yellow-500" />
                 Se descontarán <strong>{actualBottles} etiquetas</strong> del stock de empaque.
               </li>
             </ul>
@@ -100,7 +100,7 @@ export default function BottleBatchModal({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Botellas Obtenidas (330ml) *
               </label>
               <input
@@ -110,13 +110,13 @@ export default function BottleBatchModal({
                 min="1"
                 value={actualBottles}
                 onChange={(e) => setActualBottles(parseInt(e.target.value, 10) || 0)}
-                className="w-full px-3 py-2 text-base font-bold text-slate-900 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 text-base font-bold text-zinc-50 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-zinc-800 text-zinc-100"
               />
-              <p className="text-[10px] text-slate-400 mt-0.5">Estimado teórico: ~{estimatedBottles} botellas</p>
+              <p className="text-[10px] text-zinc-500 mt-0.5">Estimado teórico: ~{estimatedBottles} botellas</p>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Densidad Final (FG)
               </label>
               <input
@@ -126,13 +126,13 @@ export default function BottleBatchModal({
                 value={finalGravity}
                 onChange={(e) => setFinalGravity(e.target.value)}
                 placeholder="1.006"
-                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-zinc-800 text-zinc-100"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label className="block text-xs font-semibold text-zinc-300 mb-1">
               Notas de Cierre y Cata
             </label>
             <textarea
@@ -141,7 +141,7 @@ export default function BottleBatchModal({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Ej. Claridad cristalina, gasificación perfecta, dulzor balanceado..."
-              className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-zinc-800 text-zinc-100"
             />
           </div>
 
@@ -149,7 +149,7 @@ export default function BottleBatchModal({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg"
+              className="px-4 py-2 text-xs font-medium text-zinc-400 hover:bg-zinc-800 rounded-lg"
             >
               Cancelar
             </button>

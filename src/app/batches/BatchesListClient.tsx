@@ -49,11 +49,11 @@ export default function BatchesListClient({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
-            <Beer className="w-6 h-6 text-amber-600" />
+          <h1 className="text-2xl font-bold text-zinc-50 flex items-center gap-2">
+            <Beer className="w-6 h-6 text-yellow-500" />
             Lotes y Fermentación en Proceso
           </h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-zinc-400 mt-1">
             Seguimiento de las 6 etapas de producción, control de fechas de trasvase y cálculo de embotellado.
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function BatchesListClient({
         <div>
           <Link
             href="/batches/new"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-semibold rounded-lg text-xs shadow-sm transition-all"
+            className="inline-flex items-center gap-1.5 px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-zinc-950 font-semibold rounded-lg text-xs shadow-sm transition-all"
           >
             <Plus className="w-4 h-4" />
             Iniciar Nuevo Batch
@@ -70,17 +70,17 @@ export default function BatchesListClient({
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-200">
+      <div className="flex border-b border-zinc-700">
         <button
           onClick={() => setActiveTab('ACTIVE')}
           className={`py-3 px-5 text-xs font-bold border-b-2 transition-all flex items-center gap-2 ${
             activeTab === 'ACTIVE'
-              ? 'border-amber-600 text-amber-900'
-              : 'border-transparent text-slate-500 hover:text-slate-700'
+              ? 'border-yellow-500 text-yellow-400'
+              : 'border-transparent text-zinc-400 hover:text-zinc-300'
           }`}
         >
           <span>Batches en Curso</span>
-          <span className="px-2 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-900">
+          <span className="px-2 py-0.5 rounded-full text-[10px] bg-yellow-950 text-yellow-400">
             {activeBatches.length}
           </span>
         </button>
@@ -89,12 +89,12 @@ export default function BatchesListClient({
           onClick={() => setActiveTab('COMPLETED')}
           className={`py-3 px-5 text-xs font-bold border-b-2 transition-all flex items-center gap-2 ${
             activeTab === 'COMPLETED'
-              ? 'border-amber-600 text-amber-900'
-              : 'border-transparent text-slate-500 hover:text-slate-700'
+              ? 'border-yellow-500 text-yellow-400'
+              : 'border-transparent text-zinc-400 hover:text-zinc-300'
           }`}
         >
           <span>Historial Completados</span>
-          <span className="px-2 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-700">
+          <span className="px-2 py-0.5 rounded-full text-[10px] bg-zinc-800 text-zinc-300">
             {completedBatches.length}
           </span>
         </button>
@@ -102,14 +102,14 @@ export default function BatchesListClient({
 
       {/* Batch cards list */}
       {displayed.length === 0 ? (
-        <div className="bg-white rounded-2xl border border-dashed border-slate-300 p-12 text-center">
-          <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto mb-3">
+        <div className="bg-zinc-900 rounded-2xl border border-dashed border-zinc-700 p-12 text-center">
+          <div className="w-12 h-12 rounded-xl bg-yellow-950 text-yellow-500 flex items-center justify-center mx-auto mb-3">
             <Beer className="w-6 h-6" />
           </div>
-          <h3 className="text-sm font-bold text-slate-800">
+          <h3 className="text-sm font-bold text-zinc-100">
             {activeTab === 'ACTIVE' ? 'No hay batches activos en este momento' : 'No hay historial de lotes completados aún'}
           </h3>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+          <p className="text-xs text-zinc-400 mt-1 max-w-sm mx-auto">
             {activeTab === 'ACTIVE'
               ? 'Selecciona una de tus recetas para iniciar un nuevo lote de hidromiel con escalado automático.'
               : 'Los lotes terminados se archivarán aquí una vez embotellados.'}
@@ -117,7 +117,7 @@ export default function BatchesListClient({
           {activeTab === 'ACTIVE' && (
             <Link
               href="/batches/new"
-              className="inline-flex items-center gap-1.5 mt-4 px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg text-xs font-bold shadow-sm"
+              className="inline-flex items-center gap-1.5 mt-4 px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-zinc-950 rounded-lg text-xs font-bold shadow-sm"
             >
               <Plus className="w-4 h-4" />
               Lanzar Primer Batch
@@ -135,44 +135,44 @@ export default function BatchesListClient({
             return (
               <div
                 key={b.id}
-                className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                className="bg-zinc-900 rounded-2xl border border-zinc-700 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
+                    <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-zinc-800 text-zinc-300">
                       {b.batchNumber}
                     </span>
                     <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                       isCompleted
                         ? 'bg-emerald-100 text-emerald-800'
                         : isOverdue
-                        ? 'bg-amber-100 text-amber-900 border border-amber-300 animate-pulse'
-                        : 'bg-slate-100 text-slate-700'
+                        ? 'bg-yellow-950 text-yellow-400 border border-yellow-700 animate-pulse'
+                        : 'bg-zinc-800 text-zinc-300'
                     }`}>
                       {isCompleted ? '✓ Completado' : isOverdue ? '¡Tiempo Cumplido!' : `Etapa ${b.currentStage}/6`}
                     </span>
                   </div>
 
-                  <h3 className="font-bold text-slate-900 text-base">{b.recipe.name}</h3>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <h3 className="font-bold text-zinc-50 text-base">{b.recipe.name}</h3>
+                  <p className="text-xs text-zinc-400 mt-0.5">
                     {b.volumeLiters} Litros &bull; Inicio: {formatDate(b.startDate)}
                   </p>
 
                   {/* Stage card */}
-                  <div className="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200/80">
-                    <span className="text-[10px] uppercase font-semibold text-slate-400 block">
+                  <div className="mt-4 p-3 bg-zinc-800 rounded-xl border border-zinc-700/80">
+                    <span className="text-[10px] uppercase font-semibold text-zinc-500 block">
                       {isCompleted ? 'Resultado Final' : 'Etapa Actual'}
                     </span>
-                    <div className="text-xs font-bold text-slate-900 mt-0.5">
+                    <div className="text-xs font-bold text-zinc-50 mt-0.5">
                       {isCompleted
                         ? `${b.actualBottlesProduced} botellas producidas`
                         : `${b.currentStage}. ${stageDef?.name}`}
                     </div>
 
                     {!isCompleted && (
-                      <div className="mt-2 pt-2 border-t border-slate-200/50 flex items-center justify-between text-[11px]">
-                        <span className="text-slate-500">Mover al siguiente paso:</span>
-                        <span className={`font-semibold ${isOverdue ? 'text-amber-800' : 'text-slate-700'}`}>
+                      <div className="mt-2 pt-2 border-t border-zinc-700/50 flex items-center justify-between text-[11px]">
+                        <span className="text-zinc-400">Mover al siguiente paso:</span>
+                        <span className={`font-semibold ${isOverdue ? 'text-yellow-400' : 'text-zinc-300'}`}>
                           {formatDate(b.stageTargetDate)}
                         </span>
                       </div>
@@ -180,14 +180,14 @@ export default function BatchesListClient({
                   </div>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[11px] text-slate-400">
+                <div className="mt-5 pt-3 border-t border-zinc-800 flex items-center justify-between">
+                  <span className="text-[11px] text-zinc-500">
                     {isCompleted ? 'Archivado' : `Término: ${formatDate(b.estimatedEndDate)}`}
                   </span>
 
                   <Link
                     href={`/batches/${b.id}`}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-amber-700 hover:text-amber-800"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-yellow-400 hover:text-yellow-300"
                   >
                     <span>Ver Proceso</span>
                     <ArrowRight className="w-3.5 h-3.5" />

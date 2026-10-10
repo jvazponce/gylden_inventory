@@ -51,15 +51,15 @@ export default function AdjustStockModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="bg-white rounded-xl shadow-xl max-w-md w-full overflow-hidden border border-slate-200">
-        <div className="px-5 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+      <div className="bg-zinc-900 rounded-xl shadow-xl max-w-md w-full overflow-hidden border border-zinc-700">
+        <div className="px-5 py-4 bg-zinc-800 border-b border-zinc-700 flex items-center justify-between">
           <div>
-            <h3 className="font-semibold text-slate-800">Ajustar Stock / Entrada</h3>
-            <p className="text-xs text-slate-500 font-mono mt-0.5">{material.name}</p>
+            <h3 className="font-semibold text-zinc-100">Ajustar Stock / Entrada</h3>
+            <p className="text-xs text-zinc-400 font-mono mt-0.5">{material.name}</p>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 p-1 rounded-lg"
+            className="text-zinc-500 hover:text-zinc-300 p-1 rounded-lg"
           >
             <X className="w-5 h-5" />
           </button>
@@ -72,14 +72,14 @@ export default function AdjustStockModal({
             </div>
           )}
 
-          <div className="flex gap-2 p-1 bg-slate-100 rounded-lg">
+          <div className="flex gap-2 p-1 bg-zinc-800 rounded-lg">
             <button
               type="button"
               onClick={() => setAdjustmentType('ADD')}
               className={`flex-1 py-1.5 text-xs font-semibold rounded-md flex items-center justify-center gap-1.5 transition-all ${
                 adjustmentType === 'ADD'
                   ? 'bg-emerald-600 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
+                  : 'text-zinc-400 hover:text-zinc-100'
               }`}
             >
               <PlusCircle className="w-4 h-4" />
@@ -91,7 +91,7 @@ export default function AdjustStockModal({
               className={`flex-1 py-1.5 text-xs font-semibold rounded-md flex items-center justify-center gap-1.5 transition-all ${
                 adjustmentType === 'SUBTRACT'
                   ? 'bg-rose-600 text-white shadow-sm'
-                  : 'text-slate-600 hover:text-slate-900'
+                  : 'text-zinc-400 hover:text-zinc-100'
               }`}
             >
               <MinusCircle className="w-4 h-4" />
@@ -100,7 +100,7 @@ export default function AdjustStockModal({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label className="block text-xs font-semibold text-zinc-300 mb-1">
               Cantidad a {adjustmentType === 'ADD' ? 'añadir' : 'descontar'} ({material.unit})
             </label>
             <input
@@ -110,22 +110,22 @@ export default function AdjustStockModal({
               min="0.001"
               required
               placeholder="0.00"
-              className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
             />
-            <p className="text-[11px] text-slate-500 mt-1">
-              Stock actual registrado: <strong className="text-slate-800">{material.stock} {material.unit}</strong>
+            <p className="text-[11px] text-zinc-400 mt-1">
+              Stock actual registrado: <strong className="text-zinc-100">{material.stock} {material.unit}</strong>
             </p>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label className="block text-xs font-semibold text-zinc-300 mb-1">
               Notas / Motivo del movimiento
             </label>
             <input
               type="text"
               name="notes"
               placeholder={adjustmentType === 'ADD' ? 'Ej. Factura proveedor #4892' : 'Ej. Merma / Insumo dañado'}
-              className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
             />
           </div>
 
@@ -133,14 +133,14 @@ export default function AdjustStockModal({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg"
+              className="px-4 py-2 text-xs font-medium text-zinc-400 hover:bg-zinc-800 rounded-lg"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-4 py-2 text-xs font-semibold text-white bg-amber-600 hover:bg-amber-500 rounded-lg shadow-sm disabled:opacity-50"
+              className="px-4 py-2 text-xs font-semibold text-white bg-yellow-500 hover:bg-yellow-400 text-zinc-950 rounded-lg shadow-sm disabled:opacity-50"
             >
               {isSubmitting ? 'Guardando...' : 'Confirmar Movimiento'}
             </button>

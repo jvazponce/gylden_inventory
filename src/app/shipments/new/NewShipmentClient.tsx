@@ -167,21 +167,21 @@ export default function NewShipmentClient({
       <div className="flex items-center gap-2">
         <Link
           href="/shipments"
-          className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-slate-800"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-400 hover:text-zinc-100"
         >
           <ArrowLeft className="w-4 h-4" />
           Volver a Pedidos y Envíos
         </Link>
       </div>
 
-      <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div className="flex items-center gap-3 pb-5 border-b border-slate-100">
-          <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center">
+      <div className="bg-zinc-900 rounded-2xl border border-zinc-700 p-6 shadow-sm">
+        <div className="flex items-center gap-3 pb-5 border-b border-zinc-800">
+          <div className="w-10 h-10 rounded-xl bg-yellow-950 text-yellow-400 flex items-center justify-center">
             <ClipboardList className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-slate-900">Registrar Nuevo Pedido / Envío</h1>
-            <p className="text-xs text-slate-500">
+            <h1 className="text-xl font-bold text-zinc-50">Registrar Nuevo Pedido / Envío</h1>
+            <p className="text-xs text-zinc-400">
               Registra pedidos pendientes solicitados por clientes o despachos listos para reparto.
             </p>
           </div>
@@ -207,19 +207,19 @@ export default function NewShipmentClient({
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-6">
           {/* Selector de Estado Inicial: Pedido Pendiente vs Envío Inmediato */}
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
-            <label className="block text-xs font-bold text-slate-800 uppercase tracking-wider">
+          <div className="p-4 bg-zinc-800 rounded-xl border border-zinc-700 space-y-2">
+            <label className="block text-xs font-bold text-zinc-100 uppercase tracking-wider">
               Tipo de Registro *
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <label className={`p-3 rounded-xl border cursor-pointer flex flex-col justify-between transition-all ${
                 deliveryStatus === 'PENDING_SHIPMENT'
-                  ? 'bg-amber-50 border-amber-400 ring-2 ring-amber-400/20'
-                  : 'bg-white border-slate-200 hover:bg-slate-50'
+                  ? 'bg-yellow-950 border-yellow-500 ring-2 ring-yellow-500/20'
+                  : 'bg-zinc-800/80 border-zinc-700 hover:bg-zinc-800'
               }`}>
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-xs text-slate-900 flex items-center gap-1.5">
-                    <Clock className="w-4 h-4 text-amber-600" />
+                  <span className="font-bold text-xs text-zinc-50 flex items-center gap-1.5">
+                    <Clock className="w-4 h-4 text-yellow-500" />
                     Pedido Pendiente
                   </span>
                   <input
@@ -228,10 +228,10 @@ export default function NewShipmentClient({
                     value="PENDING_SHIPMENT"
                     checked={deliveryStatus === 'PENDING_SHIPMENT'}
                     onChange={() => setDeliveryStatus('PENDING_SHIPMENT')}
-                    className="text-amber-600"
+                    className="text-yellow-500"
                   />
                 </div>
-                <p className="text-[11px] text-slate-500 mt-1">
+                <p className="text-[11px] text-zinc-400 mt-1">
                   Nos hicieron el pedido. Queda guardado como pendiente por enviar.
                 </p>
               </label>
@@ -239,10 +239,10 @@ export default function NewShipmentClient({
               <label className={`p-3 rounded-xl border cursor-pointer flex flex-col justify-between transition-all ${
                 deliveryStatus === 'IN_TRANSIT'
                   ? 'bg-sky-50 border-sky-400 ring-2 ring-sky-400/20'
-                  : 'bg-white border-slate-200 hover:bg-slate-50'
+                  : 'bg-zinc-800/80 border-zinc-700 hover:bg-zinc-800'
               }`}>
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-xs text-slate-900 flex items-center gap-1.5">
+                  <span className="font-bold text-xs text-zinc-50 flex items-center gap-1.5">
                     <Truck className="w-4 h-4 text-sky-600" />
                     En Tránsito / Despachado
                   </span>
@@ -255,7 +255,7 @@ export default function NewShipmentClient({
                     className="text-sky-600"
                   />
                 </div>
-                <p className="text-[11px] text-slate-500 mt-1">
+                <p className="text-[11px] text-zinc-400 mt-1">
                   El pedido ya salió de bodega y va en camino al cliente.
                 </p>
               </label>
@@ -263,10 +263,10 @@ export default function NewShipmentClient({
               <label className={`p-3 rounded-xl border cursor-pointer flex flex-col justify-between transition-all ${
                 deliveryStatus === 'DELIVERED'
                   ? 'bg-emerald-50 border-emerald-400 ring-2 ring-emerald-400/20'
-                  : 'bg-white border-slate-200 hover:bg-slate-50'
+                  : 'bg-zinc-800/80 border-zinc-700 hover:bg-zinc-800'
               }`}>
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-xs text-slate-900 flex items-center gap-1.5">
+                  <span className="font-bold text-xs text-zinc-50 flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                     Ya Entregado
                   </span>
@@ -279,7 +279,7 @@ export default function NewShipmentClient({
                     className="text-emerald-600"
                   />
                 </div>
-                <p className="text-[11px] text-slate-500 mt-1">
+                <p className="text-[11px] text-zinc-400 mt-1">
                   Venta completada y entregada al cliente.
                 </p>
               </label>
@@ -289,14 +289,14 @@ export default function NewShipmentClient({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Cliente */}
             <div className="md:col-span-2">
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Cliente / Punto de Entrega *
               </label>
               <select
                 value={customerId}
                 onChange={(e) => setCustomerId(e.target.value)}
                 required
-                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white"
+                className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
               >
                 {customers.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -305,7 +305,7 @@ export default function NewShipmentClient({
                 ))}
               </select>
               {selectedCustomer?.address && (
-                <p className="text-[11px] text-slate-500 mt-1">
+                <p className="text-[11px] text-zinc-400 mt-1">
                   Dirección: <strong>{selectedCustomer.address}</strong>
                 </p>
               )}
@@ -313,7 +313,7 @@ export default function NewShipmentClient({
 
             {/* Código / Folio */}
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Código del Pedido / Envío *
               </label>
               <input
@@ -321,14 +321,14 @@ export default function NewShipmentClient({
                 required
                 value={shipmentNumber}
                 onChange={(e) => setShipmentNumber(e.target.value)}
-                className="w-full px-3 py-2 text-sm font-mono font-bold text-slate-900 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="w-full px-3 py-2 text-sm font-mono font-bold text-zinc-50 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">
                 Fecha del Pedido / Envío *
               </label>
               <input
@@ -336,7 +336,7 @@ export default function NewShipmentClient({
                 required
                 value={shipmentDate}
                 onChange={(e) => setShipmentDate(e.target.value)}
-                className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
               />
             </div>
           </div>
@@ -345,24 +345,24 @@ export default function NewShipmentClient({
           <div>
             <div className="flex items-center justify-between mb-3">
               <div>
-                <h3 className="text-sm font-bold text-slate-900">Sabores y Botellas Solicitadas</h3>
-                <p className="text-[11px] text-slate-500">
+                <h3 className="text-sm font-bold text-zinc-50">Sabores y Botellas Solicitadas</h3>
+                <p className="text-[11px] text-zinc-400">
                   Selecciona la cantidad de botellas de 330ml para cada sabor.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={addItemRow}
-                className="inline-flex items-center gap-1 px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 rounded-lg text-xs font-semibold transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1.5 bg-yellow-950 hover:bg-yellow-900 text-yellow-300 border border-yellow-800 rounded-lg text-xs font-semibold transition-colors"
               >
                 <Plus className="w-3.5 h-3.5" />
                 Añadir Sabor
               </button>
             </div>
 
-            <div className="border border-slate-200 rounded-xl overflow-hidden">
+            <div className="border border-zinc-700 rounded-xl overflow-hidden">
               <table className="w-full text-left text-xs">
-                <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-semibold">
+                <thead className="bg-zinc-800 border-b border-zinc-700 text-zinc-400 font-semibold">
                   <tr>
                     <th className="px-4 py-2.5">Sabor / Producto</th>
                     <th className="px-3 py-2.5 w-28 text-right">Stock Disp.</th>
@@ -372,19 +372,19 @@ export default function NewShipmentClient({
                     <th className="px-2 py-2.5 w-10 text-center"></th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100">
+                <tbody className="divide-y divide-zinc-800">
                   {items.map((row, idx) => {
                     const selectedFg = finishedGoods.find((f) => f.id === row.finishedGoodId);
                     const isInsufficient = selectedFg && row.quantity > selectedFg.stock;
                     const subtotal = row.quantity * row.unitPrice;
 
                     return (
-                      <tr key={idx} className="hover:bg-slate-50/50">
+                      <tr key={idx} className="hover:bg-zinc-800/50">
                         <td className="px-4 py-2">
                           <select
                             value={row.finishedGoodId}
                             onChange={(e) => updateItem(idx, 'finishedGoodId', e.target.value)}
-                            className="w-full px-2 py-1.5 text-xs border border-slate-200 rounded-md focus:ring-1 focus:ring-amber-500 bg-white"
+                            className="w-full px-2 py-1.5 text-xs border border-zinc-700 rounded-md focus:ring-1 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
                           >
                             {finishedGoods.map((fg) => (
                               <option key={fg.id} value={fg.id}>
@@ -394,7 +394,7 @@ export default function NewShipmentClient({
                           </select>
                         </td>
                         <td className="px-3 py-2 text-right">
-                          <span className={`font-semibold ${isInsufficient ? 'text-rose-600' : 'text-slate-700'}`}>
+                          <span className={`font-semibold ${isInsufficient ? 'text-rose-600' : 'text-zinc-300'}`}>
                             {selectedFg?.stock || 0}
                           </span>
                         </td>
@@ -405,8 +405,8 @@ export default function NewShipmentClient({
                             required
                             value={row.quantity}
                             onChange={(e) => updateItem(idx, 'quantity', parseInt(e.target.value, 10) || 0)}
-                            className={`w-full px-2 py-1.5 text-xs font-bold border rounded-md focus:ring-1 focus:ring-amber-500 ${
-                              isInsufficient ? 'border-rose-400 bg-rose-50 text-rose-900' : 'border-slate-200'
+                            className={`w-full px-2 py-1.5 text-xs font-bold border rounded-md focus:ring-1 focus:ring-yellow-500 bg-zinc-800 text-zinc-100 ${
+                              isInsufficient ? 'border-rose-400 bg-rose-50 text-rose-900' : 'border-zinc-700'
                             }`}
                           />
                         </td>
@@ -418,10 +418,10 @@ export default function NewShipmentClient({
                             required
                             value={row.unitPrice}
                             onChange={(e) => updateItem(idx, 'unitPrice', parseFloat(e.target.value) || 0)}
-                            className="w-full text-right px-2 py-1.5 text-xs font-medium border border-slate-200 rounded-md focus:ring-1 focus:ring-amber-500"
+                            className="w-full text-right px-2 py-1.5 text-xs font-medium border border-zinc-700 rounded-md focus:ring-1 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
                           />
                         </td>
-                        <td className="px-3 py-2 text-right font-bold text-slate-900">
+                        <td className="px-3 py-2 text-right font-bold text-zinc-50">
                           {formatCurrency(subtotal)}
                         </td>
                         <td className="px-2 py-2 text-center">
@@ -429,7 +429,7 @@ export default function NewShipmentClient({
                             type="button"
                             onClick={() => removeItemRow(idx)}
                             disabled={items.length <= 1}
-                            className="text-slate-400 hover:text-rose-600 p-1 disabled:opacity-20"
+                            className="text-zinc-500 hover:text-rose-600 p-1 disabled:opacity-20"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -443,20 +443,20 @@ export default function NewShipmentClient({
           </div>
 
           {/* Control Financiero y Cobranza */}
-          <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700">
+          <div className="p-5 bg-zinc-800 border border-zinc-700 rounded-2xl space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-300">
               Control de Cobranza y Pago del Pedido
             </h4>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="p-3 bg-white rounded-xl border border-slate-200">
-                <span className="text-[10px] uppercase font-semibold text-slate-400 block">Total a Recibir</span>
-                <div className="text-xl font-bold text-slate-900 mt-0.5">
+              <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-700">
+                <span className="text-[10px] uppercase font-semibold text-zinc-500 block">Total a Recibir</span>
+                <div className="text-xl font-bold text-zinc-50 mt-0.5">
                   {formatCurrency(totalExpected)}
                 </div>
               </div>
 
-              <div className="p-3 bg-white rounded-xl border border-slate-200">
+              <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-700">
                 <label className="text-[10px] uppercase font-semibold text-emerald-700 block mb-0.5">
                   Monto Ya Pagado / Anticipo ($)
                 </label>
@@ -470,9 +470,9 @@ export default function NewShipmentClient({
                 />
               </div>
 
-              <div className="p-3 bg-white rounded-xl border border-slate-200">
-                <span className="text-[10px] uppercase font-semibold text-slate-400 block">Saldo Pendiente</span>
-                <div className={`text-xl font-bold mt-0.5 ${balancePending > 0 ? 'text-amber-700' : 'text-emerald-700'}`}>
+              <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-700">
+                <span className="text-[10px] uppercase font-semibold text-zinc-500 block">Saldo Pendiente</span>
+                <div className={`text-xl font-bold mt-0.5 ${balancePending > 0 ? 'text-yellow-400' : 'text-emerald-700'}`}>
                   {formatCurrency(balancePending)}
                 </div>
               </div>
@@ -481,7 +481,7 @@ export default function NewShipmentClient({
 
           {/* Notas */}
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label className="block text-xs font-semibold text-zinc-300 mb-1">
               Notas / Instrucciones del Pedido
             </label>
             <input
@@ -489,21 +489,21 @@ export default function NewShipmentClient({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Ej. Pedido programado para entrega el viernes, cobrar en efectivo..."
-              className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-3 py-2 text-sm border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 bg-zinc-800 text-zinc-100"
             />
           </div>
 
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+          <div className="pt-4 border-t border-zinc-800 flex items-center justify-end gap-3">
             <Link
               href="/shipments"
-              className="px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg"
+              className="px-4 py-2 text-xs font-medium text-zinc-400 hover:bg-zinc-800 rounded-lg"
             >
               Cancelar
             </Link>
             <button
               type="submit"
               disabled={isSubmitting || stockErrors.length > 0}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-lg shadow-sm disabled:opacity-50 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-yellow-500 hover:bg-yellow-400 text-zinc-950 font-bold text-xs rounded-lg shadow-sm disabled:opacity-50 transition-all"
             >
               <Truck className="w-4 h-4" />
               {isSubmitting
