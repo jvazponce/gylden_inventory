@@ -23,7 +23,13 @@ yarn-debug.log*
 yarn-error.log*
 
 # Local env files
+.env
 .env*.local
+.dev.vars
+
+# Cloudflare OpenNext & Wrangler
+.open-next/
+.wrangler/
 
 # SQLite Database files (keep dev.db local)
 dev.db
@@ -34,3 +40,4 @@ dev.db-journal
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
